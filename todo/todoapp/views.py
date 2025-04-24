@@ -65,5 +65,9 @@ def delete_task(request, name):
     return redirect('home-page')
 
 def update_task(request, name):
-    pass
+    get_todo = todo.objects.get(user = request.user, todo_name=name)
+    get_todo.status = True
+    get_todo.save()
+
+    return redirect('home-page')
 
