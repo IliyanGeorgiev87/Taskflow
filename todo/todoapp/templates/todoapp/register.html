@@ -14,7 +14,9 @@
     <br>
     {% if messages %}
       {% for message in messages %}
-        <h3 style="color: #b22222;">{{message}}</h3>
+        <span style="color: #f72a1b;">
+          <i class="bi bi-x-octagon"></i> {{message}}
+        </span>
       {% endfor %}
     {% endif %}
     <form action="#" method="POST">
