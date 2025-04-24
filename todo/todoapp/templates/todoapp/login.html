@@ -13,7 +13,9 @@
 
     {% if messages %}
       {% for message in messages %}
-        <h2 style="color: #b22222;">{{message}}</h2>
+        <span style="color: #f72a1b;">
+          <i class="bi bi-x-octagon"></i> {{message}}
+        </span>
       {% endfor %}
     {% endif %}
     
@@ -31,7 +33,7 @@
         <button type="submit">Login <i class="bi bi-box-arrow-in-right"></i></button>
       </div>
       <div class="text">
-        <h3>Don't have an account? <a href="#">Register now</a></h3>
+        <h3>Don't have an account? <a href="{% url 'register' %}">Register now</a></h3>
       </div>
     </form>
   </div>
@@ -50,7 +52,6 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f1f3f9;
 }
 .wrapper{
   position: relative;

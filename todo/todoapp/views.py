@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import todo
 
 # Create your views here.
+@login_required
 def home(request):
     if request.method == 'POST':
         task = request.POST.get('task')
@@ -43,6 +45,7 @@ def register(request):
     return render(request, 'todoapp/register.html', {})
 
 def loginpage(request):
+    
     if request.method == 'POST':
         username = request.POST.get('uname')
         password = request.POST.get('pass')
@@ -58,12 +61,18 @@ def loginpage(request):
 
     return render(request, 'todoapp/login.html', {})
 
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
+@login_required
 def delete_task(request, name):
     get_todo = todo.objects.get(user = request.user, todo_name=name)
     get_todo.delete()
 
     return redirect('home-page')
 
+@login_required
 def update_task(request, name):
     get_todo = todo.objects.get(user = request.user, todo_name=name)
     get_todo.status = True
